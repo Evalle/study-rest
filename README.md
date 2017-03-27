@@ -3,3 +3,4 @@ RestfulAPI with Python and Flask, see this [article](https://blog.miguelgrinberg
 
 | HTTP Method | Action | Examples | 
 |-------------|--------|----------|
+| GET |  Obtain information about a resource | http://example.com/api/orders (retrieve order list) | 
