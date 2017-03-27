@@ -12,3 +12,13 @@ The HTTP request methods are typically designed to affect a given resource in st
 | DELETE | Delete a resource | http://example.com/api/orders/123 (delete order #123) | 
 
 The task of designing a web service or API that adheres to the REST guidelines then becomes an exercise in identifying the resources that will be exposed and how they will be affected by the different request methods.
+
+Our tasks resource will use HTTP methods as follows:
+
+| HTTP Method | URI | Action | 
+|-------------|-----|--------|
+| GET | http://[hostname]/todo/api/v1.0/tasks | Retrieve list of tasks | 
+| GET | http://[hostname]/todo/api/v1.0/tasks/[task_id] | Retrieve a task | 
+| POST | http://[hostname]/todo/api/v1.0/tasks | Create a new task | 
+| PUT | http://[hostname]/todo/api/v1.0/tasks/[task_id] | Retrieve list of tasks | 
+| DELETE | http://[hostname]/todo/api/v1.0/tasks/[task_id] | Delete a task | 
