@@ -47,14 +47,14 @@ def create_task():
     return jsonify({'task': task}), 201
 
 
-@app.route('/todo/api/v1.0/tasks/<int:task_id>'. methods=['PUT'])
+@app.route('/todo/api/v1.0/tasks/<int:task_id>', methods=['PUT'])
 def update_task(task_id):
     task = [task for task in tasks if task['id'] == task_id]
     if len(task) == 0:
         abort(404)
     if not request.json:
         abort(404)
-    if 'title' in request.json and type(request.json['title']) != unicode:
+    if 'title' in request.json and type(request.json['title']) is not unicode:
         abort(404)
     if 'description' in request.json and type(request.json['description']) is not unicode:
         abort(404)
@@ -66,6 +66,13 @@ def update_task(task_id):
     return jsonify({'task': task[0]})
 
 
+@app.route('/todo/api/v1.0/tasks/<int:task_id>', method=['DELETE'])
+def delete_task(task_id):
+    task = [task for task in tasks if taskp['id'] == task_id]
+    if len(task) == 0:
+        abort(400)
+    tasks.remove(task[0])
+    return jsonify({'result': True})
 
 
 @app.errorhandler(404)
