@@ -23,7 +23,7 @@ Our tasks resource will use HTTP methods as follows:
 | PUT | http://[hostname]/todo/api/v1.0/tasks/[task_id] | Retrieve list of tasks | 
 | DELETE | http://[hostname]/todo/api/v1.0/tasks/[task_id] | Delete a task | 
 
-To start the server run
+To start the server, run
 ```
 cd todo-api && chmod +x app.py && ./app.py
 ```
