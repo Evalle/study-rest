@@ -27,7 +27,7 @@ To start the server, run
 ```
 cd todo-api && chmod +x app.py && ./app.py
 ```
-And test is via
+And test it via
 ```
 curl -u evgeny:python -i http://localhost:5000/todo/api/v1.0/task
 ```
