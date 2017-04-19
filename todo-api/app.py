@@ -6,6 +6,7 @@ from flask.ext.httpauth import HTTPBasicAuth
 app = Flask(__name__)
 auth = HTTPBasicAuth()
 
+
 # authentication
 @auth.get_password
 def get_password(username):
@@ -16,31 +17,29 @@ def get_password(username):
 
 @auth.error_handler
 def unauhtorized():
-    return make_response(jsonify({'error': 'Unathorized access'}), 401) 
+    return make_response(jsonify({'error': 'Unathorized access'}), 401)
 
 
 # application
-tasks = [
-    { 
-        'id': 1,
-        'title': u'Buy groceries',
-        'description': u'Milk, Cheese, Pizza, Fruit, Tylenol',
-        'done': False
-    },
-    {
-        'id': 2,
-        'title': u'Learn Python',
-        'description': u'Need to find a good Python tutorial on the Web',
-        'done': False
-    }
-]
+tasks = [{
+    'id': 1,
+    'title': u'Buy groceries',
+    'description': u'Milk, Cheese, Pizza, Fruit, Tylenol',
+    'done': False
+}, {
+    'id': 2,
+    'title': u'Learn Python',
+    'description': u'Need to find a good Python tutorial on the Web',
+    'done': False
+}]
 
 
 def make_public_task(task):
     new_task = dict()
     for field in task:
         if field == 'id':
-            new_task['uri'] = url_for('get_task', task_id = task['id'], _external = True)
+            new_task['uri'] = url_for(
+                'get_task', task_id=task['id'], _external=True)
         else:
             new_task[field] = task[field]
     return new_task
@@ -67,10 +66,10 @@ def create_task():
     if not request.json or not 'title' in request.json:
         abort(400)
     task = {
-            'id': tasks[-1]['id'] + 1,
-            'title': request.json['title'],
-            'description': request.json.get('description', ""),
-            'done': False
+        'id': tasks[-1]['id'] + 1,
+        'title': request.json['title'],
+        'description': request.json.get('description', ""),
+        'done': False
     }
     tasks.append(task)
     return jsonify({'task': task}), 201
@@ -86,12 +85,14 @@ def update_task(task_id):
         abort(404)
     if 'title' in request.json and type(request.json['title']) is not unicode:
         abort(404)
-    if 'description' in request.json and type(request.json['description']) is not unicode:
+    if 'description' in request.json and type(
+            request.json['description']) is not unicode:
         abort(404)
     if 'done' in request.json and type(request.json['done']) is not bool:
         abort(404)
     task[0]['title'] = request.json.get('title', task[0]['title'])
-    task[0]['description'] = request.json.get('description', task[0]['description'])
+    task[0]['description'] = request.json.get('description',
+                                              task[0]['description'])
     task[0]['done'] = request.json.get('done', task[0]['done'])
     return jsonify({'task': [make_public_task(task) for task in tasks]})
 
