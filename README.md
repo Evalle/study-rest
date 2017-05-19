@@ -24,10 +24,10 @@ Our tasks resource will use HTTP methods as follows:
 | DELETE | http://[hostname]/todo/api/v1.0/tasks/[task_id] | Delete a task | 
 
 To start the server, run
-```
-cd todo-api && chmod +x app.py && ./app.py
+``` console
+$ cd todo-api && chmod +x app.py && ./app.py
 ```
 And test it via
-```
-curl -u evgeny:python -i http://localhost:5000/todo/api/v1.0/task
+``` console
+$ curl -u evgeny:python -i http://localhost:5000/todo/api/v1.0/task
 ```
